@@ -1,0 +1,28 @@
+﻿<?php
+function num_page(){		//Постраничная навигация
+$db = Zend_Db_Table::getDefaultAdapter();
+				$select = new Zend_Db_Select($db);
+				$select->from('message', array("COUNT(message_id) as count"));
+				$nav_numb = $db->fetchAll($select);
+				$num_rows = $nav_numb[0]['count'];  //Количество комментариев
+					$page_max = ceil($num_rows/5);
+					if (isset($_GET['page']) and $_GET['page']<=$page_max) $current_page = $_GET['page']; else $current_page = 1;
+					$page_display = 5;
+					$page_display_middle = ceil($page_display/2);
+					$first_page = 1;
+					$previous_page=false;
+					$last_page_button=false;
+					$next_page=false;
+					$first_page_button=false;
+					if ($page_max<=$page_display) {$first_page = 1; $page_display=$page_max; $previous_page=true; $next_page=true;}
+					elseif ($current_page<=$page_display_middle) {$first_page = 1; if($current_page>1)  {$previous_page=true;} $next_page=true; $last_page_button=true;}
+					elseif ($current_page>$page_display_middle and ($current_page+$page_display_middle)<$page_max) {$first_page = $current_page - $page_display_middle+1; $last_page_button=true; $previous_page=true; $first_page_button=true; $next_page=true;}
+					elseif ($current_page>$page_display_middle and ($current_page+$page_display_middle)>=$page_max) {$first_page = $page_max - $page_display+1; if ($current_page<$page_max) {$next_page=true;} $previous_page=true; $first_page_button=true;}
+					if ($first_page_button) echo '<a href="?page=1">Первая </a>';
+					if ($previous_page) echo '<a href="?page='.($current_page-1).'">&lt; </a>';
+					for ($i=$first_page;$i<$first_page+$page_display;$i++) {
+						if ($i==$current_page) {echo $i.' ';} else {echo '<a href="?page='.$i.'">'.$i.' </a>';}
+					}
+					if ($next_page) echo '<a href="?page='.($current_page+1).'"> &gt;</a>';
+					if ($last_page_button) echo '<a href="?page='.$page_max.'"> Последняя</a>';
+			}

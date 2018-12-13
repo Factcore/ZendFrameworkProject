@@ -1,0 +1,72 @@
+body,html {
+    font-size: 100%;
+    margin: 0;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color: #000;
+    background-color: #fff;
+}
+
+h1 {
+    font-size:1.4em;
+    color: #800000;
+    background-color: transparent;
+}
+
+#content {
+    width: 770px;
+    margin: 0 auto;
+}
+a {
+    color: #800000;
+}
+table{
+	background-color:rgba(239,250,255,1.00);
+	border-radius: 15px;
+	margin-bottom:20px;
+	width:100%;
+	font-style:italic;
+}
+#ww{
+	word-wrap:break-word;
+	width:770px;
+}
+.name{
+	width:50%;
+	float:left;
+	margin-bottom:10px;
+	margin-top:20px;
+}
+.name input{
+	width:80%;
+}
+.email{
+	width:50%;
+	float:left;
+	margin-bottom:10px;
+	margin-top:20px;
+}
+.email input{
+	width:80%;
+}
+.title{
+	width:100%;
+	margin-bottom:10px;
+}
+.title input{
+	width:100%;
+}
+.text{
+	width:100%;
+	margin-bottom:15px;
+}
+.text textarea{
+	resize:none;
+	width:100%;
+}
+#formbutton{
+	float:right;
+}
+.navigator{
+	width:100%;
+	text-align:center;
+}
